@@ -1,5 +1,5 @@
-require "colorize"
 require "jennifer"
+require "colorize"
 
 Jennifer::Config.read("config/database.yml", "development")
 

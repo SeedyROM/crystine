@@ -1,7 +1,10 @@
-require "kemal"
-
 module Peeper::API::Router
     get "/" do
-        "Hello World!"
+        users = Peeper::Models::User.all
+        # users.each do |user|
+        #     puts user
+        # end
+
+        users
     end
 end

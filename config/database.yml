@@ -5,6 +5,7 @@ defaults : &defaults
   password: postgres
   migration_files_path: "./priv/migrations"
 
+
 development:
   db: blog_development
   <<: *defaults
