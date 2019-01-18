@@ -2,18 +2,26 @@ module Peeper::API::Router
     include Peeper::Models
 
     get "/" do
-        test_user = User.where { _email == "test@test.com" }
+        # Build a database query
+        query = User.where { _email == "test@test.com" }
 
-        if test_user.exists?
-            puts test_user.results
-            next({:message => "A user existed"}.to_json)
+        # Run the query to determine if the record exists
+        if query.exists?
+            # Convert the query to an array and take the first item.
+            test_user = query.to_a[0]
+            
+            # Respond with the users email
+            next({:message => "A user existed: #{test_user.email}"}.to_json)
         else
-            test_user_model = User.new({
+            # Create an instance of a User model
+            test_user = User.new({
                 :email => "test@test.com", 
                 :password_hash => "32hdsjh29d39j2"
             })
-            test_user_model.save
+            # Save it to the database without validation 
+            test_user.save
             
+            # Respond accordingly
             next({:message => "User \"test@test.com\" not found, creating it now..."}.to_json)
         end
     end
