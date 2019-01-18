@@ -4,12 +4,12 @@ class Peeper::Models::User < Jennifer::Model::Base
         id: Primary32,
         email: String,
         password_hash: String,
-        is_active: Bool,
+        is_active: {type: Bool, null: true},
 
-        name: String,
+        name: {type: String, null: true},
 
-        created_at: Time,
-        updated_at: Time
+        created_at: {type: Time, null: true},
+        updated_at: {type: Time, null: true}
     )
 
     validates_uniqueness :email
