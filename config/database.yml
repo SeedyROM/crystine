@@ -1,0 +1,14 @@
+defaults : &defaults
+  host: localhost
+  adapter: postgres
+  user: postgres
+  password: postgres
+  migration_files_path: "./priv/migrations"
+
+development:
+  db: blog_development
+  <<: *defaults
+
+test:
+  db: blog_test
+  <<: *defaults

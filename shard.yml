@@ -1,0 +1,21 @@
+name: peeper
+version: 0.1.0
+
+authors:
+  - Zack Kollar <rallokkcaz@gmail.com>
+
+targets:
+  peeper:
+    main: src/peeper.cr
+
+crystal: 0.26.1
+
+license: MIT
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+  jennifer:
+    github: imdrasil/jennifer.cr
+  pg:
+    github: will/crystal-pg
