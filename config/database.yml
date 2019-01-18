@@ -1,15 +1,16 @@
 defaults : &defaults
   host: localhost
   adapter: postgres
-  user: postgres
-  password: postgres
   migration_files_path: "./priv/migrations"
-
+  model_files_path: "./src/models"
 
 development:
-  db: blog_development
   <<: *defaults
+  db: peeper_development
+  user: postgres
+  password: postgres
+
 
 test:
-  db: blog_test
   <<: *defaults
+  db: peeper_test

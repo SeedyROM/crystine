@@ -1,7 +1,6 @@
 require "kemal"
-require "jennifer"
 
-require "./models/*"
+require "./db"
 require "./api/*"
 
 module Peeper

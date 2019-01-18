@@ -12,5 +12,5 @@ class Peeper::Models::User < Jennifer::Model::Base
         updated_at: Time
     )
 
-    # validate_uniqueness :email
+    validates_uniqueness :email
 end
