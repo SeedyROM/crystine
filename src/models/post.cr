@@ -10,7 +10,7 @@ class Peeper::Models::Post < Jennifer::Model::Base
     created_at: {type: Time, null: true},
     updated_at: {type: Time, null: true}
   )
-
+  
   serialize_fields :body, :created_at
 
   belongs_to :user, User

@@ -1,5 +1,14 @@
 module Peeper::API::Router
+  include Authentication
   include Models
+
+  post "/login" do |env|
+    
+  end
+
+  post "/sign-up" do |env|
+
+  end
 
   get "/users" do
     users = User.all.to_a
