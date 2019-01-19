@@ -1,16 +1,20 @@
 class Peeper::Models::User < Jennifer::Model::Base
-    with_timestamps
-    mapping(
-        id: Primary32,
-        email: String,
-        password_hash: String,
-        is_active: {type: Bool, null: true},
+  include Helpers
 
-        name: {type: String, null: true},
+  with_timestamps
+  mapping(
+    id: Primary32,
+    email: String,
+    is_active: {type: Bool, null: true},
 
-        created_at: {type: Time, null: true},
-        updated_at: {type: Time, null: true}
-    )
+    password_hash: String,
 
-    validates_uniqueness :email
+    name: {type: String, null: true},
+
+    created_at: {type: Time, null: true},
+    updated_at: {type: Time, null: true}
+  )
+
+  validates_uniqueness :email
+  serialize_fields :email, :name, :created_at
 end
