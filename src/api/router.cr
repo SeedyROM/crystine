@@ -3,11 +3,11 @@ module Peeper::API::Router
   include Models
 
   post "/login" do |env|
-    
+
   end
 
   post "/sign-up" do |env|
-
+    p env.params.body
   end
 
   get "/users" do

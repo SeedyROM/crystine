@@ -5,6 +5,14 @@ require "./db"
 
 require "./api/*"
 
+class JSONReponseHandler < Kemal::Handler
+  def call(context)
+    context.response.content_type = "application/json"
+    call_next context
+  end
+end
+
 module Peeper
+  add_handler JSONReponseHandler.new
   Kemal.run
 end
