@@ -2,8 +2,20 @@ module Peeper::API::Router
   include Models
 
   get "/users" do
-    query = User.where { _email == "test@test.com" }
+    users = User.all.to_a
+    {:users => users}.to_json
+  end
 
-    {:users => query.to_a}.to_json
+  get "/profile/:id" do |env|
+    user = User.where{ _id == env.params.url["id"] }.first
+
+    if !user
+      halt env, status_code: 404, response: "Not Found"
+    end
+
+    {
+      :user => user,
+      :posts => user.posts
+    }.to_json
   end
 end

@@ -1,5 +1,5 @@
 class Peeper::Models::User < Jennifer::Model::Base
-  include Helpers
+  include Serializer
 
   with_timestamps
   mapping(
@@ -17,4 +17,6 @@ class Peeper::Models::User < Jennifer::Model::Base
 
   validates_uniqueness :email
   serialize_fields :email, :name, :created_at
+
+  has_many :posts, Post
 end
