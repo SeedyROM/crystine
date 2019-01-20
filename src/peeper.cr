@@ -13,6 +13,7 @@ class JSONReponseHandler < Kemal::Handler
 end
 
 module Peeper
+  pp 
   add_handler JSONReponseHandler.new
   Kemal.run
 end

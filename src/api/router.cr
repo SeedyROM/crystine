@@ -7,7 +7,11 @@ module Peeper::API::Router
   end
 
   post "/sign-up" do |env|
-    p env.params.body
+    email = env.params.json["email"].as(String)
+    password = env.params.json["password"].as(String)
+    password_confirm = env.params.json["password_confirm"].as(String)    
+
+    
   end
 
   get "/users" do

@@ -21,7 +21,7 @@ module Peeper::Authentication
     user = User.where{ _email = email }.first
     raise InvalidLoginCredentials.new if !user || hash_password(password) != user.password_hash
     
-    user   
+    user
   end
 
   def register(email : String, password : String, password_confirm : String)
