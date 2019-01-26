@@ -1,8 +1,6 @@
 require "http/server"
 
-module Peeper::Helpers::API
-  extend self
-
+module Crystine::API
   def respond_with_json(env : HTTP::Server::Context)
     env.response.content_type = "application/json" # REPLACE CONFIG
   end

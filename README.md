@@ -1,4 +1,4 @@
-# Crystine _(Locally peeper)_
+# Crystine
 
 Crystine is an experiment/learning tool for me to write some cool Crystal code. This code is volatile and almost all of the dependencies are likely to change within a year or so.
 

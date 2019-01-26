@@ -4,5 +4,3 @@
 /.shards/
 *.dwarf
 .crystal/
-sentry
-peeper

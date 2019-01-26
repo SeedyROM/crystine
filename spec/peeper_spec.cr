@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe Peeper do
+describe Crystine do
   # TODO: Write tests
 
   it "works" do

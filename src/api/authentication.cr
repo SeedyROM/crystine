@@ -1,9 +1,9 @@
 require "crypto/bcrypt/password"
 require "jwt"
 
-module Peeper::Authentication 
+module Crystine::Authentication
   include Models
-  
+
   @@PASSWORD_COST : Int32 = 10
   @@JWT_SECRET : String = "D921A887A29083A43A394A9E04D2EFF9" # Change this!
   @@JWT_TYPE : String = "HS256"
@@ -20,7 +20,7 @@ module Peeper::Authentication
   def authenticate(email : String, password : String)
     user = User.where{ _email = email }.first
     raise InvalidLoginCredentials.new if !user || hash_password(password) != user.password_hash
-    
+
     user
   end
 
