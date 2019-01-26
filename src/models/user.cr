@@ -16,7 +16,7 @@ class Peeper::Models::User < Jennifer::Model::Base
   )
 
   validates_uniqueness :email
-  serialize_fields :email, :name, :created_at
+  serialize_fields :email, :name, :created_at, :posts
 
   has_many :posts, Post
 end
