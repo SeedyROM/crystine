@@ -1,6 +1,8 @@
 module Peeper::API::Router
   include Authentication
   include Models
+  extend Helpers::API
+  include Helpers::API
 
   post "/login" do |env|
 
@@ -9,12 +11,14 @@ module Peeper::API::Router
   post "/sign-up" do |env|
     email = env.params.json["email"].as(String)
     password = env.params.json["password"].as(String)
-    password_confirm = env.params.json["password_confirm"].as(String)    
+    password_confirm = env.params.json["password_confirm"].as(String)
 
-    
+
   end
 
-  get "/users" do
+  get "/users" do |env|
+    respond_with_json(env)
+
     users = User.all.to_a
     {:users => users}.to_json
   end
@@ -22,9 +26,7 @@ module Peeper::API::Router
   get "/profile/:id" do |env|
     user = User.where{ _id == env.params.url["id"] }.first
 
-    if !user
-      halt env, status_code: 404, response: "Not Found"
-    end
+    halt_404(env) if !user
 
     {
       :user => user,
