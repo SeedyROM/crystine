@@ -1,8 +1,16 @@
-module Crystine::API::Router
+module Crystine::Routes
   extend API
-
   include Authentication
   include Models
+
+  get "/users" do |env|
+    respond_with_json(env)
+
+    User.inspect
+
+    users = User.all.to_a
+    {:users => users}.to_json
+  end
 
   # post "/login" do |env|
 

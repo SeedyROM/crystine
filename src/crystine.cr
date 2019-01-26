@@ -3,7 +3,10 @@ require "sentry-run"
 
 require "./helpers/*"
 require "./db"
+
+require "./models/*"
 require "./api/*"
+require "./routes"
 
 module Crystine
   process = Sentry.config(
