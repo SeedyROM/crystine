@@ -1,14 +1,21 @@
+require "jennifer/model/authentication"
+
 module Crystine
   class Models::User < Jennifer::Model::Base
+    include Jennifer::Model::Authentication
     include Serializer
 
     with_timestamps
+    with_authentication
+
     mapping(
       id: Primary32,
-      email: String,
+      email: {type: String, default: ""},
       is_active: {type: Bool, null: true},
 
-      password_hash: String,
+      password_digest: {type: String, default: ""},
+      password: Password,
+      password_confirmation: { type: String?, virtual: true },
 
       name: {type: String, null: true},
 
