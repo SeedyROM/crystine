@@ -108,11 +108,11 @@ ALTER SEQUENCE public.posts_id_seq OWNED BY public.posts.id;
 CREATE TABLE public.users (
     id integer NOT NULL,
     email character varying(128) NOT NULL,
+    password_digest character varying(254) NOT NULL,
     is_active boolean,
     name character varying(254),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    password_digest character varying(254) DEFAULT ''::character varying
+    updated_at timestamp without time zone NOT NULL
 );
 
 
