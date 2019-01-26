@@ -1,8 +1,8 @@
 require "jennifer"
 require "jennifer/adapter/postgres"
 
-require "./config/jennifer"
-require "./priv/migrations/*"
+require "../config/jennifer"
+require "../priv/migrations/*"
 
 require "sam"
 load_dependencies "jennifer"
