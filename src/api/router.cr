@@ -1,36 +1,36 @@
-module Peeper::API::Router
+module Crystine::API::Router
+  extend API
+
   include Authentication
   include Models
-  extend Helpers::API
-  include Helpers::API
 
-  post "/login" do |env|
+  # post "/login" do |env|
 
-  end
+  # end
 
-  post "/sign-up" do |env|
-    email = env.params.json["email"].as(String)
-    password = env.params.json["password"].as(String)
-    password_confirm = env.params.json["password_confirm"].as(String)
+  # post "/sign-up" do |env|
+  #   email = env.params.json["email"].as(String)
+  #   password = env.params.json["password"].as(String)
+  #   password_confirm = env.params.json["password_confirm"].as(String)
 
 
-  end
+  # end
 
-  get "/users" do |env|
-    respond_with_json(env)
+  # get "/users" do |env|
+  #   respond_with_json(env)
 
-    users = User.all.to_a
-    {:users => users}.to_json
-  end
+  #   users = User.all.to_a
+  #   {:users => users}.to_json
+  # end
 
-  get "/profile/:id" do |env|
-    user = User.where{ _id == env.params.url["id"] }.first
+  # get "/profile/:id" do |env|
+  #   user = User.where{ _id == env.params.url["id"] }.first
 
-    halt_404(env) if !user
+  #   halt_404(env) if !user
 
-    {
-      :user => user,
-      :posts => user.posts
-    }.to_json
-  end
+  #   {
+  #     :user => user,
+  #     :posts => user.posts
+  #   }.to_json
+  # end
 end

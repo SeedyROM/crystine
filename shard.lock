@@ -48,3 +48,11 @@ shards:
     github: imdrasil/sam.cr
     version: 0.3.0
 
+  sentry:
+    github: samueleaton/sentry
+    commit: 5e0cbde5a33f6b9f400ce7784f13817754e44c66
+
+  sentry-run:
+    github: faustinoaq/sentry-run
+    version: 0.3.0
+

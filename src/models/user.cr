@@ -1,4 +1,4 @@
-class Peeper::Models::User < Jennifer::Model::Base
+class Crystine::Models::User < Jennifer::Model::Base
   include Serializer
 
   with_timestamps
