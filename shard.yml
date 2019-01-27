@@ -1,23 +1,31 @@
-name: peeper
+name: crystine
 version: 0.1.0
 
 authors:
   - Zack Kollar <rallokkcaz@gmail.com>
 
 targets:
-  peeper:
-    main: src/peeper.cr
+  crystine:
+    main: src/crystine.cr
 
-crystal: 0.26.1
+crystal: 0.27.0
 
 license: MIT
 
 dependencies:
   kemal:
     github: kemalcr/kemal
+    branch: master
   jennifer:
     github: imdrasil/jennifer.cr
   pg:
     github: will/crystal-pg
   jwt:
     github: crystal-community/jwt
+
+development_dependencies:
+  sentry:
+    github: samueleaton/sentry
+    branch: master
+  sentry-run:
+    github: faustinoaq/sentry-run

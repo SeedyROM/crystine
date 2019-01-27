@@ -1,4 +1,4 @@
-module Peeper::Serializer
+module Crystine::Serializer
   macro serialize_fields(*fields)
     def to_json(json)
       json.object do

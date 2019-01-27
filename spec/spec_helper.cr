@@ -1,2 +1,2 @@
 require "spec"
-require "../src/peeper"
+require "../src/crystine"

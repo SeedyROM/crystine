@@ -1,9 +1,9 @@
 require "crypto/bcrypt/password"
 require "jwt"
 
-module Peeper::Authentication 
+module Crystine::Authentication
   include Models
-  
+
   @@PASSWORD_COST : Int32 = 10
   @@JWT_SECRET : String = "D921A887A29083A43A394A9E04D2EFF9" # Change this!
   @@JWT_TYPE : String = "HS256"
@@ -13,14 +13,14 @@ module Peeper::Authentication
   class NonMatchingPasswords < Exception end
   class UserAlreadyExists < Exception end
 
-  def hash_password(password : String )
+  def digest_password(password : String )
     Crypto::Bcrypt::Password.create(password, cost: @@PASSWORD_COST)
   end
 
   def authenticate(email : String, password : String)
     user = User.where{ _email = email }.first
-    raise InvalidLoginCredentials.new if !user || hash_password(password) != user.password_hash
-    
+    raise InvalidLoginCredentials.new if !user || digest_password(password) != user.password_digest
+
     user
   end
 
@@ -29,7 +29,7 @@ module Peeper::Authentication
 
     new_user = User.new(
       email: email,
-      password: hash_password(password)
+      password: digest_password(password)
     )
     raise UserAlreadyExists.new if !new_user.valid?
 

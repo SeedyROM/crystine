@@ -1,22 +1,31 @@
-class Peeper::Models::User < Jennifer::Model::Base
-  include Serializer
+require "jennifer/model/authentication"
 
-  with_timestamps
-  mapping(
-    id: Primary32,
-    email: String,
-    is_active: {type: Bool, null: true},
+module Crystine
+  class Models::User < Jennifer::Model::Base
+    include Jennifer::Model::Authentication
+    include Serializer
 
-    password_hash: String,
+    with_timestamps
+    with_authentication
 
-    name: {type: String, null: true},
+    mapping(
+      id: Primary32,
+      email: {type: String, default: ""},
+      is_active: {type: Bool, null: true},
 
-    created_at: {type: Time, null: true},
-    updated_at: {type: Time, null: true}
-  )
+      password_digest: {type: String, default: ""},
+      password: Password,
+      password_confirmation: { type: String?, virtual: true },
 
-  validates_uniqueness :email
-  serialize_fields :email, :name, :created_at
+      name: {type: String, null: true},
 
-  has_many :posts, Post
+      created_at: {type: Time, null: true},
+      updated_at: {type: Time, null: true}
+    )
+
+    validates_uniqueness :email
+    serialize_fields :email, :name, :created_at
+
+    has_many :posts, Post
+  end
 end
