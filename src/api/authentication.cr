@@ -4,36 +4,18 @@ require "jwt"
 module Crystine::Authentication
   include Models
 
-  @@PASSWORD_COST : Int32 = 10
   @@JWT_SECRET : String = "D921A887A29083A43A394A9E04D2EFF9" # Change this!
   @@JWT_TYPE : String = "HS256"
   @@JWT_EXPIRATION : Int32 = 60 * 120 # Expire in 2 hours
 
-  class InvalidLoginCredentials < Exception end
-  class NonMatchingPasswords < Exception end
-  class UserAlreadyExists < Exception end
-
-  def digest_password(password : String )
-    Crypto::Bcrypt::Password.create(password, cost: @@PASSWORD_COST)
-  end
-
   def authenticate(email : String, password : String)
-    user = User.where{ _email = email }.first
-    raise InvalidLoginCredentials.new if !user || digest_password(password) != user.password_digest
+    user = User.where { _email == email }.first
+    return false if !user
 
-    user
-  end
+    authenticated = user.authenticate(password)
+    return false if !authenticated
 
-  def register(email : String, password : String, password_confirm : String)
-    raise NonMatchingPasswords.new if password != password_confirm
-
-    new_user = User.new(
-      email: email,
-      password: digest_password(password)
-    )
-    raise UserAlreadyExists.new if !new_user.valid?
-
-    authenticate(email, password)
+    true
   end
 
   def create_jwt(user : User)

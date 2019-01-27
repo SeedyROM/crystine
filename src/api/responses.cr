@@ -6,9 +6,9 @@ module Crystine::API
   end
 
   macro extended
-    macro halt_404(env, message = "Not Found")
+    macro handle_error(env, status_code, message = "Not Found")
       payload = {"error" => \{{ message }} }.to_json
-      halt env, status_code: 404, response: payload
+      halt env, status_code: \{{ status_code }}, response: payload
     end
   end
 end

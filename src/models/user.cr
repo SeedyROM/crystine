@@ -24,7 +24,7 @@ module Crystine
     )
 
     validates_uniqueness :email
-    serialize_fields :email, :name, :created_at
+    serialize_fields :id, :email, :name, :created_at
 
     has_many :posts, Post
   end

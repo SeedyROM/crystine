@@ -22,7 +22,7 @@ shards:
 
   jennifer:
     github: imdrasil/jennifer.cr
-    version: 0.7.0
+    commit: 1bf4ce179386e04070691ec38799b265d2247113
 
   jwt:
     github: crystal-community/jwt
