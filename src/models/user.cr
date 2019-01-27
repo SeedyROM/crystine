@@ -5,8 +5,6 @@ module Crystine
     include Jennifer::Model::Authentication
     include Serializer
 
-    with_timestamps
-    with_authentication
 
     mapping(
       id: Primary32,
@@ -21,7 +19,10 @@ module Crystine
 
       created_at: {type: Time, null: true},
       updated_at: {type: Time, null: true}
-    )
+      )
+
+    with_timestamps
+    with_authentication
 
     validates_uniqueness :email
     serialize_fields :id, :email, :name, :created_at
