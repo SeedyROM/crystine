@@ -6,7 +6,7 @@ require "./db"
 
 require "./models/*"
 require "./api/*"
-require "./routes"
+require "./router"
 
 module Crystine
   process = Sentry.config(

@@ -13,13 +13,13 @@ module Crystine::Authentication
   class NonMatchingPasswords < Exception end
   class UserAlreadyExists < Exception end
 
-  def hash_password(password : String )
+  def digest_password(password : String )
     Crypto::Bcrypt::Password.create(password, cost: @@PASSWORD_COST)
   end
 
   def authenticate(email : String, password : String)
     user = User.where{ _email = email }.first
-    raise InvalidLoginCredentials.new if !user || hash_password(password) != user.password_hash
+    raise InvalidLoginCredentials.new if !user || digest_password(password) != user.password_digest
 
     user
   end
@@ -29,7 +29,7 @@ module Crystine::Authentication
 
     new_user = User.new(
       email: email,
-      password: hash_password(password)
+      password: digest_password(password)
     )
     raise UserAlreadyExists.new if !new_user.valid?
 
